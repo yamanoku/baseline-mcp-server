@@ -2,6 +2,8 @@
 
 Web Platform APIのサポート状況を提供するModel Context Protocolサーバーです。
 
+[![JSR Version](https://jsr.io/badges/@yamanoku/baseline-mcp-server)](https://jsr.io/@yamanoku/baseline-mcp-server)
+
 ## 概要
 
 このサーバーは、[Web Platform Dashboard](https://webstatus.dev/)のAPIを使用して、WebのAPI機能のBaselineステータス（サポート状況）を取得できるMCPサーバーを実装しています。クエリに基づいてWeb機能の情報を取得し、その結果をMCPクライアントに返します。
