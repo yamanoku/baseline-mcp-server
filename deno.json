@@ -1,14 +1,33 @@
 {
+  "$id": "https://jsr.io/schema/config-file.v1.json",
+  "$schema": "http://json-schema.org/draft-07/schema",
   "name": "@yamanoku/baseline-mcp-server",
+  "description": "Model Context Protocol server that provides support status for Web Platform APIs",
   "version": "0.1.0",
   "license": "MIT",
   "exports": "./baseline-mcp-server.ts",
   "tasks": {
     "dev": "deno run --watch main.ts",
-    "test": "deno test --allow-net=api.webstatus.dev"
+    "test": "deno test --allow-net=api.webstatus.dev",
+    "lint": "deno lint",
+    "fmt": "deno fmt"
   },
   "imports": {
     "@modelcontextprotocol/sdk": "npm:@modelcontextprotocol/sdk@^1.9.0",
     "zod": "npm:zod@^3.24.2"
+  },
+  "publish": {
+    "include": [
+      "baseline-mcp-server.ts",
+      "constants.ts",
+      "types.ts",
+      "tools/**/*.ts",
+      "screenshot_claude_desktop.png",
+      "README.md",
+      "LICENSE"
+    ],
+    "exclude": [
+      "tools/**/*.test.ts"
+    ]
   }
 }
