@@ -2,7 +2,10 @@ name: Deno CI Check
 
 on:
   pull_request:
-    branches: ["main"]
+    branches:
+      - "main"
+    paths:
+      - "**.ts"
 
 permissions:
   contents: read
