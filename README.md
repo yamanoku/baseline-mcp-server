@@ -84,6 +84,10 @@ CodeのMCPクライアントで使用するには、以下のように`settings.
 }
 ```
 
+## 謝辞
+
+このOSSはGPT-4o Image Generationによってロゴを製作、Claude 3.7 Sonnetによって実装、ドキュメントのサンプルを提案いただきました。感謝申し上げます。
+
 ## ライセンス
 
 [MIT License](./LICENSE)
