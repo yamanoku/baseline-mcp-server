@@ -75,4 +75,4 @@ CodeのMCPクライアントで使用するには、以下のように`settings.
 
 ## ライセンス
 
-MIT License
+[MIT License](./LICENSE)
