@@ -45,7 +45,11 @@ DesktopのMCPクライアントで使用するには、以下のように`cline_
   "mcpServers": {
     "baseline-mcp-server": {
       "command": "deno",
-      "args": ["run", "--allow-net=api.webstatus.dev", "jsr:@yamanoku/baseline-mcp-server"]
+      "args": [
+        "run",
+        "--allow-net=api.webstatus.dev",
+        "jsr:@yamanoku/baseline-mcp-server"
+      ]
     }
   }
 }
