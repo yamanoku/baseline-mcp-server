@@ -1,4 +1,3 @@
-
 <p align="center">
 	<img src="./logo.png" alt="Baseline MCP Serverロゴ" width="200" height="200">
 </p>
@@ -86,7 +85,8 @@ CodeのMCPクライアントで使用するには、以下のように`settings.
 
 ## 謝辞
 
-このOSSはGPT-4o Image Generationによってロゴを製作、Claude 3.7 Sonnetによって実装、ドキュメントのサンプルを提案いただきました。感謝申し上げます。
+このOSSはGPT-4o Image Generationによってロゴを製作、Claude 3.7
+Sonnetによって実装、ドキュメントのサンプルを提案いただきました。感謝申し上げます。
 
 ## ライセンス
 
