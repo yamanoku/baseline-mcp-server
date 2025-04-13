@@ -1,6 +1,6 @@
 // mcp-baseline-server.ts
-import { McpServer } from "npm:@modelcontextprotocol/sdk/server/mcp.js";
-import { StdioServerTransport } from "npm:@modelcontextprotocol/sdk/server/stdio.js";
+import { McpServer } from "npm:@modelcontextprotocol/sdk@^1.9.0/server/mcp.js";
+import { StdioServerTransport } from "npm:@modelcontextprotocol/sdk@^1.9.0/server/stdio.js";
 import { z } from "npm:zod@^3.24.2";
 import { getWebFeatureBaselineStatusAsMCPContent } from "./tools/getWebFeatureBaselineStatusAsMCPContent.ts";
 
