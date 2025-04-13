@@ -83,6 +83,31 @@ CodeのMCPクライアントで使用するには、以下のように`settings.
 }
 ```
 
+## Dockerによる起動
+
+最初にDockerイメージをビルドします。
+
+```shell
+docker build -t baseline-mcp-server .
+```
+
+MCPクライアントの設定でDockerコンテナを実行するようにします。
+
+```json
+{
+  "mcpServers": {
+    "baseline-mcp-server": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "baseline-mcp-server:latest"
+      ]
+    }
+  }
+}
+```
+
 ## 謝辞
 
 このOSSはGPT-4o Image Generationによってロゴを製作、Claude 3.7
