@@ -1,4 +1,9 @@
-# Baseline MCP Server
+
+<p align="center">
+	<img src="./logo.png" alt="Baseline MCP Serverロゴ" width="200" height="200">
+</p>
+
+<h1 align="center">Baseline MCP Server</h1>
 
 Web Platform APIのサポート状況を提供するModel Context Protocolサーバーです。
 
