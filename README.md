@@ -32,7 +32,8 @@ Baselineについての詳細については「[Baseline (互換性) - MDN Web D
 ## MCPクライアントでの設定
 
 - サーバーを起動するにあたり、Denoの使用を推奨します
-- お手元のローカル環境にbaseline-mcp-server.tsを設置し、それを読み取るように設定してください
+  - パーミッションとして`api.webstatus.dev`のみのアクセスを許可してください
+- [`@yamanoku/baseline-mcp-server`](https://jsr.io/@yamanoku/baseline-mcp-server)を指定するか、お手元のローカル環境にbaseline-mcp-server.tsを設置して読み取るように設定してください
 
 ### Claude Desktop
 
@@ -44,7 +45,7 @@ DesktopのMCPクライアントで使用するには、以下のように`cline_
   "mcpServers": {
     "baseline-mcp-server": {
       "command": "deno",
-      "args": ["run", "--allow-net=api.webstatus.dev", "baseline-mcp-server.ts"]
+      "args": ["run", "--allow-net=api.webstatus.dev", "jsr:@yamanoku/baseline-mcp-server"]
     }
   }
 }
@@ -64,7 +65,7 @@ CodeのMCPクライアントで使用するには、以下のように`settings.
         "args": [
           "run",
           "--allow-net=api.webstatus.dev",
-          "baseline-mcp-server.ts"
+          "jsr:@yamanoku/baseline-mcp-server"
         ]
       }
     }
