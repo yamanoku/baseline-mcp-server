@@ -1,6 +1,11 @@
 {
+  "name": "@yamanoku/baseline-mcp-server",
+  "version": "0.1.0",
+  "license": "MIT",
+  "exports": "./baseline-mcp-server.ts",
   "tasks": {
-    "dev": "deno run --watch main.ts"
+    "dev": "deno run --watch main.ts",
+    "test": "deno test --allow-net=api.webstatus.dev"
   },
   "imports": {
     "@modelcontextprotocol/sdk": "npm:@modelcontextprotocol/sdk@^1.9.0",
