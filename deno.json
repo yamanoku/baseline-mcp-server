@@ -3,11 +3,11 @@
   "$schema": "http://json-schema.org/draft-07/schema",
   "name": "@yamanoku/baseline-mcp-server",
   "description": "Model Context Protocol server that provides support status for Web Platform APIs",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "exports": "./baseline-mcp-server.ts",
   "tasks": {
-    "dev": "deno run --watch main.ts",
+    "dev": "deno run --watch baseline-mcp-server.ts",
     "test": "deno test --allow-net=api.webstatus.dev",
     "lint": "deno lint",
     "fmt": "deno fmt"
