@@ -6,6 +6,8 @@ on:
       - "main"
     paths:
       - "**.ts"
+      - "deno.json"
+      - ".github/workflows/deno-ci-check.yml"
 
 permissions:
   contents: read
