@@ -28,10 +28,14 @@ Web Platform APIのサポート状況を提供するModel Context Protocolサー
 
 Baselineステータスは、Web機能のブラウザサポート状況を示します：
 
-- **widely**: 広くサポートされているWeb標準機能。ほとんどのブラウザで安全に使用できます。
-- **newly**: 新しく標準化されたWeb機能。主要なブラウザでサポートされ始めていますが、まだ普及途上です。
-- **limited**: 限定的にサポートされているWeb機能。一部のブラウザでは使用できないか、フラグが必要な場合があります。
-- **no_data**: 現時点ではBaselineに含まれていないWeb機能。ブラウザのサポート状況を個別に確認する必要があります。
+- **widely**:
+  広くサポートされているWeb標準機能。ほとんどのブラウザで安全に使用できます。
+- **newly**:
+  新しく標準化されたWeb機能。主要なブラウザでサポートされ始めていますが、まだ普及途上です。
+- **limited**:
+  限定的にサポートされているWeb機能。一部のブラウザでは使用できないか、フラグが必要な場合があります。
+- **no_data**:
+  現時点ではBaselineに含まれていないWeb機能。ブラウザのサポート状況を個別に確認する必要があります。
 
 Baselineについての詳細については「[Baseline (互換性) - MDN Web Docs 用語集](https://developer.mozilla.org/ja/docs/Glossary/Baseline/Compatibility)」を参照してください。
 
@@ -43,7 +47,8 @@ Baselineについての詳細については「[Baseline (互換性) - MDN Web D
 
 ### Claude Desktop
 
-Claude DesktopのMCPクライアントで使用するには、以下のように`cline_mcp_settings.json`に設定を追加します。
+Claude
+DesktopのMCPクライアントで使用するには、以下のように`cline_mcp_settings.json`に設定を追加します。
 
 ```json
 {
@@ -62,7 +67,8 @@ Claude DesktopのMCPクライアントで使用するには、以下のように
 
 ### Visual Studio Code
 
-Visual Studio CodeのMCPクライアントで使用するには、以下のように`settings.json`に設定を追加します。
+Visual Studio
+CodeのMCPクライアントで使用するには、以下のように`settings.json`に設定を追加します。
 
 ```json
 {

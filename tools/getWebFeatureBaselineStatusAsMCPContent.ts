@@ -90,21 +90,34 @@ export const getWebFeatureBaselineStatusAsMCPContent = async (
 
     const featureUsageList = usageInfo
       .map((usage) => {
-        const usageData = Object.entries(usage).map(([_, data]) => {
-          return `${data.daily ? data.daily * 100 : "N/A"}`;
-        });
-        return `${usageData.join(", ")}`;
+        return Object.values(usage)
+          .map((data) => (data?.daily ? data.daily * 100 : "N/A"))
+          .join(", ");
       })
       .join("\n- ");
 
-    const formattedResponse = [
+    const createFormattedResponse = (
+      categories: typeof formattedCategoryDescriptions,
+      browserList: typeof browserSupportList,
+      usageList: typeof featureUsageList,
+      featureList: typeof featureStatusList | null,
+    ) => {
+      return [
+        categories,
+        `\n##ブラウザのサポート状況\n- ${browserList}`,
+        `\n##機能の使用状況\n- ${usageList}`,
+        featureList ? `\n##具体的な機能\n- ${featureList}` : "",
+      ]
+        .join("\n")
+        .trim();
+    };
+
+    const formattedResponse = createFormattedResponse(
       formattedCategoryDescriptions,
-      `\n##ブラウザのサポート状況\n- ${browserSupportList}`,
-      `\n##機能の使用状況\n- ${featureUsageList}`,
-      webFeatures.length > 1 ? `\n##具体的な機能\n- ${featureStatusList}` : "",
-    ]
-      .join("\n")
-      .trim();
+      browserSupportList,
+      featureUsageList,
+      webFeatures.length > 1 ? featureStatusList : null,
+    );
 
     return {
       content: [
