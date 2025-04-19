@@ -7,7 +7,7 @@ import { getWebFeatureBaselineStatusAsMCPContent } from "./tools/getWebFeatureBa
 // MCPサーバーの初期化
 const server = new McpServer({
   name: "Baseline MCP Server",
-  version: "0.1.0",
+  version: "0.3.0",
   capabilities: {
     resource: {},
     tools: {},

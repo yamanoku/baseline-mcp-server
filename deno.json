@@ -3,7 +3,7 @@
   "$schema": "http://json-schema.org/draft-07/schema",
   "name": "@yamanoku/baseline-mcp-server",
   "description": "Model Context Protocol server that provides support status for Web Platform APIs",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "license": "MIT",
   "exports": "./baseline-mcp-server.ts",
   "tasks": {
