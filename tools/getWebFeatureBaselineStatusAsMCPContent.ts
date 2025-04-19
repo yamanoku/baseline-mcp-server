@@ -40,6 +40,14 @@ export const getWebFeatureBaselineStatusAsMCPContent = async (
       .map((feature) => feature.baseline)
       .filter((value, index, self) => self.indexOf(value) === index);
 
+    // BrowserImplementationsDataを取得
+    const browserImplementationsData = webFeatures.map(
+      (feature) => feature.browser_implementations,
+    );
+
+    // Usage情報を取得
+    const usageInfo = webFeatures.map((feature) => feature.usage);
+
     const baselineCategoryDescriptions = {
       widely:
         "広くサポートされているWeb標準機能です。ほとんどのブラウザで安全に使用できます。",
@@ -57,7 +65,9 @@ export const getWebFeatureBaselineStatusAsMCPContent = async (
       .filter((category) => baselineCategoryDescriptions[category.status])
       .map(
         (category) =>
-          `- ${query}: ${baselineCategoryDescriptions[category.status]}`,
+          `##機能\n- ${query}: ${
+            baselineCategoryDescriptions[category.status]
+          }`,
       )
       .join("\n");
 
@@ -65,12 +75,49 @@ export const getWebFeatureBaselineStatusAsMCPContent = async (
       .map((feature) => `${feature.name}: ${feature.baseline.status}`)
       .join("\n- ");
 
-    const formattedResponse = [
+    const browserSupportList = browserImplementationsData
+      .map((browserData) => {
+        const browserSupport = Object.entries(browserData).map(
+          ([browser, data]) => {
+            const version = data?.version || "N/A";
+            const date = data?.date || "N/A";
+            return `${browser}: ${version} (${date})`;
+          },
+        );
+        return `${browserSupport.join(", ")}`;
+      })
+      .join("\n- ");
+
+    const featureUsageList = usageInfo
+      .map((usage) => {
+        return Object.values(usage)
+          .map((data) => (data?.daily ? data.daily * 100 : "N/A"))
+          .join(", ");
+      })
+      .join("\n- ");
+
+    const createFormattedResponse = (
+      categories: typeof formattedCategoryDescriptions,
+      browserList: typeof browserSupportList,
+      usageList: typeof featureUsageList,
+      featureList: typeof featureStatusList | null,
+    ) => {
+      return [
+        categories,
+        `\n##ブラウザのサポート状況\n- ${browserList}`,
+        `\n##機能の使用状況\n- ${usageList}`,
+        featureList ? `\n##具体的な機能\n- ${featureList}` : "",
+      ]
+        .join("\n")
+        .trim();
+    };
+
+    const formattedResponse = createFormattedResponse(
       formattedCategoryDescriptions,
-      webFeatures.length > 1 ? `\n具体的な機能:\n- ${featureStatusList}` : "",
-    ]
-      .join("\n")
-      .trim();
+      browserSupportList,
+      featureUsageList,
+      webFeatures.length > 1 ? featureStatusList : null,
+    );
 
     return {
       content: [

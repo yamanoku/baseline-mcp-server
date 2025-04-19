@@ -24,6 +24,8 @@ about web features based on queries and returns the results to MCP clients.
 - Feature search using Web Platform Dashboard API
 - Providing Baseline status (`widely`, `newly`, `limited`, `no_data`) for
   features
+- Browser implementation status (version and release date)
+- Feature usage data
 - Integration with various AI models via MCP
 
 ## About Baseline Status
