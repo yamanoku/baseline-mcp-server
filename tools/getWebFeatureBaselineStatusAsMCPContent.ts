@@ -40,6 +40,14 @@ export const getWebFeatureBaselineStatusAsMCPContent = async (
       .map((feature) => feature.baseline)
       .filter((value, index, self) => self.indexOf(value) === index);
 
+    // BrowserImplementationsDataを取得
+    const browserImplementationsData = webFeatures.map(
+      (feature) => feature.browser_implementations,
+    );
+
+    // Usage情報を取得
+    const usageInfo = webFeatures.map((feature) => feature.usage);
+
     const baselineCategoryDescriptions = {
       widely:
         "広くサポートされているWeb標準機能です。ほとんどのブラウザで安全に使用できます。",
@@ -57,7 +65,9 @@ export const getWebFeatureBaselineStatusAsMCPContent = async (
       .filter((category) => baselineCategoryDescriptions[category.status])
       .map(
         (category) =>
-          `- ${query}: ${baselineCategoryDescriptions[category.status]}`,
+          `##機能\n- ${query}: ${
+            baselineCategoryDescriptions[category.status]
+          }`,
       )
       .join("\n");
 
@@ -65,9 +75,33 @@ export const getWebFeatureBaselineStatusAsMCPContent = async (
       .map((feature) => `${feature.name}: ${feature.baseline.status}`)
       .join("\n- ");
 
+    const browserSupportList = browserImplementationsData
+      .map((browserData) => {
+        const browserSupport = Object.entries(browserData).map(
+          ([browser, data]) => {
+            const version = data?.version || "N/A";
+            const date = data?.date || "N/A";
+            return `${browser}: ${version} (${date})`;
+          },
+        );
+        return `${browserSupport.join(", ")}`;
+      })
+      .join("\n- ");
+
+    const featureUsageList = usageInfo
+      .map((usage) => {
+        const usageData = Object.entries(usage).map(([_, data]) => {
+          return `${data.daily ? data.daily * 100 : "N/A"}`;
+        });
+        return `${usageData.join(", ")}`;
+      })
+      .join("\n- ");
+
     const formattedResponse = [
       formattedCategoryDescriptions,
-      webFeatures.length > 1 ? `\n具体的な機能:\n- ${featureStatusList}` : "",
+      `\n##ブラウザのサポート状況\n- ${browserSupportList}`,
+      `\n##機能の使用状況\n- ${featureUsageList}`,
+      webFeatures.length > 1 ? `\n##具体的な機能\n- ${featureStatusList}` : "",
     ]
       .join("\n")
       .trim();
