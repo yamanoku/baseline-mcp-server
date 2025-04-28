@@ -1,7 +1,8 @@
 {
   "extends": [
     "config:base",
-    "github>Omochice/renovate-config:deno"
+    "github>Omochice/renovate-config:deno",
+    "helpers:pinGitHubActionDigests"
   ],
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "labels": ["dependencies"],
