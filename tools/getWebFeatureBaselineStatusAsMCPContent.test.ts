@@ -10,14 +10,19 @@ Deno.test({
     const query = "<dialog>";
     const result = await getWebFeatureBaselineStatusAsMCPContent(query);
     assertExists(result);
-    const expectedContent = `##機能
+    const expectedContent = `## 機能
 - <dialog>: 広くサポートされているWeb標準機能です。ほとんどのブラウザで安全に使用できます。
+## サポート状況
+### Newly available
+2022-03-14
+### Widely available
+2024-09-14
 
-##ブラウザのサポート状況
-- chrome: 37 (2014-08-26), edge: 79 (2020-01-15), firefox: 98 (2022-03-08), safari: 15.4 (2022-03-14)
+## ブラウザのサポート状況
+- chrome: 37 (2014-08-26), chrome_android: 37 (2014-09-03), edge: 79 (2020-01-15), firefox: 98 (2022-03-08), firefox_android: 98 (2022-03-08), safari: 15.4 (2022-03-14), safari_ios: 15.4 (2022-03-14)
 
-##機能の使用状況
-- 7.300097`;
+## 機能の使用状況
+- 6.990607`;
     assertEquals(result.content[0].text, expectedContent);
   },
 });
