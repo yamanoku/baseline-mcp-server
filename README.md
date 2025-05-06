@@ -22,6 +22,7 @@ Web Platform APIのサポート状況を提供するModel Context Protocolサー
 - 機能のBaselineステータス（`widely`、`newly`、`limited`、`no_data`）の提供
 - ブラウザ実装状況（バージョンと実装日）の提供
 - 機能の使用状況データの提供
+- 特定のブラウザを除外した機能検索（`chrome`, `edge`, `firefox`, `safari`）
 - MCPを介した各種AIモデルとの連携
 
 ## Baselineステータスについて

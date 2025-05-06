@@ -26,6 +26,8 @@ about web features based on queries and returns the results to MCP clients.
   features
 - Browser implementation status (version and release date)
 - Feature usage data
+- Feature search excluding specific browsers (`chrome`, `edge`, `firefox`,
+  `safari`)
 - Integration with various AI models via MCP
 
 ## About Baseline Status
