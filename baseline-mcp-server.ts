@@ -5,11 +5,12 @@ import { z } from "npm:zod@^3.24.2";
 import { getWebFeatureBaselineStatusAsMCPContent } from "./tools/getWebFeatureBaselineStatusAsMCPContent.ts";
 import { getNegatedBrowserBaselineStatusAsMCPContent } from "./tools/getNegatedBrowserBaselineStatusAsMCPContent.ts";
 import { BROWSERS, type Browsers } from "./types.ts";
+import DenoJSON from "./deno.json" with { type: "json" };
 
 // MCPサーバーの初期化
 const server = new McpServer({
   name: "Baseline MCP Server",
-  version: "0.3.0",
+  version: DenoJSON.version,
   capabilities: {
     resource: {},
     tools: {},
