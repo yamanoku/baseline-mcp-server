@@ -1,6 +1,7 @@
 export type BaselineStatus = "widely" | "limited" | "newly" | "no_data";
 
-type Browser = "chrome" | "edge" | "firefox" | "safari";
+export const BROWSERS = ["chrome", "edge", "firefox", "safari"] as const;
+export type Browsers = typeof BROWSERS[number];
 
 type BrowserImplementationsData = {
   date: string;
@@ -15,7 +16,7 @@ export type WebFeature = {
     low_date?: string;
   };
   browser_implementations: {
-    [key in Browser]?: BrowserImplementationsData;
+    [key in Browsers]?: BrowserImplementationsData;
   };
   usage: {
     chrome: {

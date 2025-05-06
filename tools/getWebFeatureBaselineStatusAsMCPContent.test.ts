@@ -22,7 +22,7 @@ Deno.test({
 - chrome: 37 (2014-08-26), chrome_android: 37 (2014-09-03), edge: 79 (2020-01-15), firefox: 98 (2022-03-08), firefox_android: 98 (2022-03-08), safari: 15.4 (2022-03-14), safari_ios: 15.4 (2022-03-14)
 
 ## 機能の使用状況
-- 6.990607`;
+- 7.917884`;
     assertEquals(result.content[0].text, expectedContent);
   },
 });
