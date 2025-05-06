@@ -61,13 +61,29 @@ export const getWebFeatureBaselineStatusAsMCPContent = async (
       [key in BaselineStatus]: string;
     };
 
+    const baselineSupportDate = (category: {
+      low_date?: string;
+      high_date?: string;
+    }) => {
+      const lowDate = category.low_date
+        ? `### Newly available\n${category.low_date}\n`
+        : null;
+      const highDate = category.high_date
+        ? `### Widely available\n${category.high_date}\n`
+        : null;
+      if (!lowDate && !highDate) {
+        return "";
+      }
+      return `${lowDate}${highDate}`;
+    };
+
     const formattedCategoryDescriptions = baselineCategories
       .filter((category) => baselineCategoryDescriptions[category.status])
       .map(
         (category) =>
-          `##機能\n- ${query}: ${
+          `## 機能\n- ${query}: ${
             baselineCategoryDescriptions[category.status]
-          }`,
+          }\n## サポート状況\n${baselineSupportDate(category)}`,
       )
       .join("\n");
 
@@ -104,9 +120,9 @@ export const getWebFeatureBaselineStatusAsMCPContent = async (
     ) => {
       return [
         categories,
-        `\n##ブラウザのサポート状況\n- ${browserList}`,
-        `\n##機能の使用状況\n- ${usageList}`,
-        featureList ? `\n##具体的な機能\n- ${featureList}` : "",
+        `## ブラウザのサポート状況\n- ${browserList}\n`,
+        `## 機能の使用状況\n- ${usageList}\n`,
+        featureList ? `## 具体的な機能\n- ${featureList}` : "",
       ]
         .join("\n")
         .trim();

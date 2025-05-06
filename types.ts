@@ -11,6 +11,8 @@ type BrowserImplementationsData = {
 export type WebFeature = {
   baseline: {
     status: BaselineStatus;
+    high_date?: string;
+    low_date?: string;
   };
   browser_implementations: {
     [key in Browser]?: BrowserImplementationsData;
