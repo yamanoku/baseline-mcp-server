@@ -5,10 +5,11 @@ import type { BaselineStatus } from "../types.ts";
 /**
  * Web機能APIへのクエリを投稿し、Baselineステータスに関する構造化された結果を返します。
  *
- * この関数はWeb機能に関連するクエリ文字列を受け取り、そのBaselineステータスを検索し、
+ * この関数はWeb機能に関連するクエリ文字列（または複数のクエリ文字列）を受け取り、そのBaselineステータスを検索し、
  * ブラウザ間での機能のサポートレベルに関するフォーマットされた情報を返します。
  *
- * @param query - Baselineステータスを照会するWeb機能名
+ * @param query - Baselineステータスを照会するWeb機能名、または機能名の配列
+ *               複数の機能名が配列として提供された場合、API検索では「+OR+」でつなげられます
  *
  * @returns Promise<{ content: TextContent[] }>
  *   - 機能が見つかった場合: 機能のBaselineステータスに関するフォーマットされた情報を返します
@@ -18,18 +19,19 @@ import type { BaselineStatus } from "../types.ts";
  * @throws コンソールにエラーをログ出力することはありますが、常にレスポンスオブジェクトを返し、呼び出し元には例外をスローしません
  */
 export const getWebFeatureBaselineStatusAsMCPContent = async (
-  query: string,
+  query: string | string[],
 ): Promise<{ content: TextContent[] }> => {
   try {
     const webFeatures = await getFeatureStatus(query);
 
     if (webFeatures === undefined || webFeatures.length === 0) {
+      const queryDisplay = Array.isArray(query) ? query.join('", "') : query;
       return {
         content: [
           {
             type: "text",
             text:
-              `「${query}」に関する情報は見つかりませんでした。別の機能名で試してみてください。`,
+              `「${queryDisplay}」に関する情報は見つかりませんでした。別の機能名で試してみてください。`,
           },
         ],
       };
@@ -77,11 +79,14 @@ export const getWebFeatureBaselineStatusAsMCPContent = async (
       return `${lowDate}${highDate}`;
     };
 
+    // 複数のクエリがある場合は、最初のクエリだけを表示
+    const displayQuery = Array.isArray(query) ? query[0] : query;
+
     const formattedCategoryDescriptions = baselineCategories
       .filter((category) => baselineCategoryDescriptions[category.status])
       .map(
         (category) =>
-          `## 機能\n- ${query}: ${
+          `## 機能\n- ${displayQuery}: ${
             baselineCategoryDescriptions[category.status]
           }\n## サポート状況\n${baselineSupportDate(category)}`,
       )
