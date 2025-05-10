@@ -23,9 +23,9 @@ server.tool(
   "get_web_feature_baseline_status",
   "クエリを指定し、Web Platform Dashboardからfeatureの結果を取得します",
   {
-    query: z.string().describe("調べたい機能の名前"),
+    query: z.string().array().describe("調べたい機能の名前"),
   },
-  async ({ query }: { query: string }) => {
+  async ({ query }: { query: string | string[] }) => {
     return await getWebFeatureBaselineStatusAsMCPContent(query);
   },
 );
