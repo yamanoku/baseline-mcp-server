@@ -14,7 +14,6 @@ const server = new McpServer({
   name: "Baseline MCP Server",
   version: DenoJSON.version,
   capabilities: {
-    resource: {},
     tools: {},
   },
 });
