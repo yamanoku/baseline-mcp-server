@@ -2,8 +2,10 @@
 import { McpServer } from "npm:@modelcontextprotocol/sdk@^1.11.1/server/mcp.js";
 import { StdioServerTransport } from "npm:@modelcontextprotocol/sdk@^1.11.1/server/stdio.js";
 import { z } from "npm:zod@^3.24.4";
-import { getWebFeatureBaselineStatusAsMCPContent } from "./tools/getWebFeatureBaselineStatusAsMCPContent.ts";
-import { getNegatedBrowserBaselineStatusAsMCPContent } from "./tools/getNegatedBrowserBaselineStatusAsMCPContent.ts";
+import {
+  getNegatedBrowserBaselineStatusAsMCPContent,
+  getWebFeatureBaselineStatusAsMCPContent,
+} from "./tools/index.ts";
 import { BROWSERS, type Browsers } from "./types.ts";
 import DenoJSON from "./deno.json" with { type: "json" };
 
