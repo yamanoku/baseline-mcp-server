@@ -1,7 +1,7 @@
 // mcp-baseline-server.ts
-import { McpServer } from "npm:@modelcontextprotocol/sdk@^1.9.0/server/mcp.js";
-import { StdioServerTransport } from "npm:@modelcontextprotocol/sdk@^1.9.0/server/stdio.js";
-import { z } from "npm:zod@^3.24.2";
+import { McpServer } from "npm:@modelcontextprotocol/sdk@^1.11.1/server/mcp.js";
+import { StdioServerTransport } from "npm:@modelcontextprotocol/sdk@^1.11.1/server/stdio.js";
+import { z } from "npm:zod@^3.24.4";
 import { getWebFeatureBaselineStatusAsMCPContent } from "./tools/getWebFeatureBaselineStatusAsMCPContent.ts";
 import { getNegatedBrowserBaselineStatusAsMCPContent } from "./tools/getNegatedBrowserBaselineStatusAsMCPContent.ts";
 import { BROWSERS, type Browsers } from "./types.ts";

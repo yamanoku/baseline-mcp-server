@@ -1,14 +1,13 @@
 {
-  "version": "4",
+  "version": "5",
   "specifiers": {
-    "npm:@modelcontextprotocol/sdk@*": "1.9.0_express@5.1.0_zod@3.24.2",
-    "npm:@modelcontextprotocol/sdk@^1.9.0": "1.9.0_express@5.1.0_zod@3.24.2",
+    "npm:@modelcontextprotocol/sdk@^1.11.1": "1.11.1_express@5.1.0_zod@3.24.4",
     "npm:@types/node@*": "22.12.0",
-    "npm:zod@^3.24.2": "3.24.2"
+    "npm:zod@^3.24.4": "3.24.4"
   },
   "npm": {
-    "@modelcontextprotocol/sdk@1.9.0_express@5.1.0_zod@3.24.2": {
-      "integrity": "sha512-Jq2EUCQpe0iyO5FGpzVYDNFR6oR53AIrwph9yWl7uSc7IWUMsrmpmSaTGra5hQNunXpM+9oit85p924jWuHzUA==",
+    "@modelcontextprotocol/sdk@1.11.1_express@5.1.0_zod@3.24.4": {
+      "integrity": "sha512-9LfmxKTb1v+vUS1/emSk1f5ePmTLkb9Le9AxOB5T0XM59EUumwcS45z05h7aiZx3GI0Bl7mjb3FMEglYj+acuQ==",
       "dependencies": [
         "content-type",
         "cors",
@@ -140,8 +139,8 @@
     "eventsource-parser@3.0.1": {
       "integrity": "sha512-VARTJ9CYeuQYb0pZEPbzi740OWFgpHe7AYJ2WFZVnUDUQp5Dk2yJUgF36YsZ81cOyxT0QxmXD2EQpapAouzWVA=="
     },
-    "eventsource@3.0.6": {
-      "integrity": "sha512-l19WpE2m9hSuyP06+FbuUUf1G+R0SFLrtQfbRb9PRr+oimOfxQhgGCbVaXg5IvZyyTThJsxh6L/srkMiCeBPDA==",
+    "eventsource@3.0.7": {
+      "integrity": "sha512-CRT1WTyuQoD771GW56XEZFQ/ZoSfWid1alKGDYMmkt2yl8UXrVR4pspqWNEcqKvVIzg6PAltWjxcSSPrboA4iA==",
       "dependencies": [
         "eventsource-parser"
       ]
@@ -461,19 +460,20 @@
       "integrity": "sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA==",
       "dependencies": [
         "isexe"
-      ]
+      ],
+      "bin": true
     },
     "wrappy@1.0.2": {
       "integrity": "sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ=="
     },
-    "zod-to-json-schema@3.24.5_zod@3.24.2": {
+    "zod-to-json-schema@3.24.5_zod@3.24.4": {
       "integrity": "sha512-/AuWwMP+YqiPbsJx5D6TfgRTc4kTLjsh5SOcd4bLsfUg2RcEXrFMJl1DGgdHy2aCfsIA/cr/1JM0xcB2GZji8g==",
       "dependencies": [
         "zod"
       ]
     },
-    "zod@3.24.2": {
-      "integrity": "sha512-lY7CDW43ECgW9u1TcT3IoXHflywfVqDYze4waEz812jR/bZ8FHDsl7pFQoSZTz5N+2NqRXs8GBwnAwo3ZNxqhQ=="
+    "zod@3.24.4": {
+      "integrity": "sha512-OdqJE9UDRPwWsrHjLN2F8bPxvwJBK22EHLWtanu0LSYr5YqzsaaW3RMgmjwr8Rypg5k+meEJdSPXJZXE/yqOMg=="
     }
   },
   "redirects": {
@@ -518,8 +518,8 @@
   },
   "workspace": {
     "dependencies": [
-      "npm:@modelcontextprotocol/sdk@^1.9.0",
-      "npm:zod@^3.24.2"
+      "npm:@modelcontextprotocol/sdk@^1.11.1",
+      "npm:zod@^3.24.4"
     ]
   }
 }

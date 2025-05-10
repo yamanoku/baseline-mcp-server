@@ -13,8 +13,8 @@
     "fmt": "deno fmt"
   },
   "imports": {
-    "@modelcontextprotocol/sdk": "npm:@modelcontextprotocol/sdk@^1.9.0",
-    "zod": "npm:zod@^3.24.2"
+    "@modelcontextprotocol/sdk": "npm:@modelcontextprotocol/sdk@^1.11.1",
+    "zod": "npm:zod@^3.24.4"
   },
   "publish": {
     "include": [
