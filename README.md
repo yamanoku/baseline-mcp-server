@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/yamanoku-baseline-mcp-server-badge.png)](https://mseep.ai/app/yamanoku-baseline-mcp-server)
+
 <p align="center">
 	<img src="./logo.png" alt="Baseline MCP Serverロゴ" width="200" height="200">
 </p>
