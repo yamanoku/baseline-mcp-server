@@ -38,9 +38,19 @@ export const getWebFeatureBaselineStatusAsMCPContent = async (
     }
 
     // Baselineカテゴリのリストを作成
-    const baselineCategories = webFeatures
-      .map((feature) => feature.baseline)
-      .filter((value, index, self) => self.indexOf(value) === index);
+    // status で重複しないように初出のデータのみを保持
+    const seenStatuses = new Set<BaselineStatus>();
+    const baselineCategories = webFeatures.reduce<{
+      status: BaselineStatus;
+      high_date?: string;
+      low_date?: string;
+    }[]>((acc, feature) => {
+      if (!seenStatuses.has(feature.baseline.status)) {
+        seenStatuses.add(feature.baseline.status);
+        acc.push(feature.baseline);
+      }
+      return acc;
+    }, []);
 
     // BrowserImplementationsDataを取得
     const browserImplementationsData = webFeatures.map(
