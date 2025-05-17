@@ -92,7 +92,8 @@ Deno.test({
 });
 
 Deno.test({
-  name: "getWebFeatureBaselineStatusAsMCPContent - Deduplicates baseline statuses",
+  name:
+    "getWebFeatureBaselineStatusAsMCPContent - Deduplicates baseline statuses",
   fn: async () => {
     const query = "grid";
     const result = await getWebFeatureBaselineStatusAsMCPContent(query);
