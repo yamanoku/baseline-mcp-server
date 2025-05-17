@@ -90,3 +90,17 @@ Deno.test({
     );
   },
 });
+
+Deno.test({
+  name:
+    "getWebFeatureBaselineStatusAsMCPContent - Deduplicates baseline statuses",
+  fn: async () => {
+    const query = "grid";
+    const result = await getWebFeatureBaselineStatusAsMCPContent(query);
+    assertExists(result);
+    const text = result.content[0].text;
+    const widelyCount = (text.match(/### Widely available/g) || []).length;
+    // API から複数の Grid 関連機能が返るが、Widely カテゴリは 1 度だけ表示される
+    assertEquals(widelyCount, 1);
+  },
+});

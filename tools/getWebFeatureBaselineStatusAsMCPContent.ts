@@ -38,9 +38,20 @@ export const getWebFeatureBaselineStatusAsMCPContent = async (
     }
 
     // Baselineカテゴリのリストを作成
-    const baselineCategories = webFeatures
-      .map((feature) => feature.baseline)
-      .filter((value, index, self) => self.indexOf(value) === index);
+    // Web Status API では基本的に重複しないが、防御的に status 単位で
+    // 重複を排除して最初に出現したデータだけを保持する
+    const seenStatuses = new Set<BaselineStatus>();
+    const baselineCategories = webFeatures.reduce<{
+      status: BaselineStatus;
+      high_date?: string;
+      low_date?: string;
+    }[]>((acc, feature) => {
+      if (!seenStatuses.has(feature.baseline.status)) {
+        seenStatuses.add(feature.baseline.status);
+        acc.push(feature.baseline);
+      }
+      return acc;
+    }, []);
 
     // BrowserImplementationsDataを取得
     const browserImplementationsData = webFeatures.map(
