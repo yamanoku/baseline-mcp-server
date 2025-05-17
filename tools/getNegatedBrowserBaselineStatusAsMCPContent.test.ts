@@ -13,7 +13,8 @@ Deno.test({
     assertExists(result);
     const text = result.content[0].text;
     assertEquals(text.includes("## chrome以外で使用可能な機能"), true);
-    const hasKnownFeature = text.includes("Ambient light sensor") || text.includes("Barcode detector");
+    const hasKnownFeature = text.includes("Ambient light sensor") ||
+      text.includes("Barcode detector");
     assertEquals(hasKnownFeature, true);
   },
 });
