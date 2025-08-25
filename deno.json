@@ -14,7 +14,7 @@
   },
   "imports": {
     "@modelcontextprotocol/sdk": "npm:@modelcontextprotocol/sdk@^1.15.1",
-    "zod": "npm:zod@^3.24.4"
+    "zod": "npm:zod@^4.0.0"
   },
   "publish": {
     "include": [
