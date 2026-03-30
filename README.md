@@ -121,3 +121,8 @@ Sonnetによって実装、ドキュメントのサンプルを提案いただ�
 ## ライセンス
 
 [MIT License](./LICENSE)
+
+## Hosted deployment
+
+A hosted deployment is available on [Fronteir AI](https://fronteir.ai/mcp/yamanoku-baseline-mcp-server).
+
