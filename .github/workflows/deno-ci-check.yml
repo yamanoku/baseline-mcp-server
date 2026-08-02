@@ -21,15 +21,18 @@ jobs:
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
       - name: Setup Deno
-        uses: denoland/setup-deno@e95548e56dfa95d4e1a28d6f422fafe75c4c26fb # v2.0.3
+        uses: denoland/setup-deno@22d081ff2d3a40755e97629de92e3bcbfa7cf2ed # v2.0.5
         with:
-          deno-version: v2.x
+          deno-version: lts
 
       - name: Verify formatting
         run: deno fmt --check
 
       - name: Run linter
         run: deno lint
+
+      - name: Type check
+        run: deno check baseline-mcp-server.ts
 
       - name: Run tests
         run: deno test -A
