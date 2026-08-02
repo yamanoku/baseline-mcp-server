@@ -13,9 +13,9 @@
     "fmt": "deno fmt"
   },
   "imports": {
-    "@modelcontextprotocol/sdk": "npm:@modelcontextprotocol/sdk@^1.30.0",
-    "@modelcontextprotocol/sdk/server/mcp.js": "npm:@modelcontextprotocol/sdk@^1.30.0/server/mcp.js",
-    "@modelcontextprotocol/sdk/server/stdio.js": "npm:@modelcontextprotocol/sdk@^1.30.0/server/stdio.js",
+    "@modelcontextprotocol/client": "npm:@modelcontextprotocol/client@^2.0.0",
+    "@modelcontextprotocol/server": "npm:@modelcontextprotocol/server@^2.0.0",
+    "@modelcontextprotocol/server/stdio": "npm:@modelcontextprotocol/server@^2.0.0/stdio",
     "@std/assert": "jsr:@std/assert@^1.0.19",
     "zod": "npm:zod@^4.4.3"
   },
