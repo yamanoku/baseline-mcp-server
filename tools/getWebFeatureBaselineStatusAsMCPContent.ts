@@ -109,6 +109,7 @@ export const getWebFeatureBaselineStatusAsMCPContent = async (
 
     const browserSupportList = browserImplementationsData
       .map((browserData) => {
+        if (!browserData) return "N/A";
         const browserSupport = Object.entries(browserData).map(
           ([browser, data]) => {
             const version = data?.version || "N/A";

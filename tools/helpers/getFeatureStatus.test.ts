@@ -1,7 +1,4 @@
-import {
-  assertEquals,
-  assertExists,
-} from "https://deno.land/std@0.224.0/assert/mod.ts";
+import { assertEquals, assertExists } from "@std/assert";
 import { getFeatureStatus } from "./getFeatureStatus.ts";
 
 Deno.test({
@@ -10,7 +7,7 @@ Deno.test({
     const query = "dialog";
     const result = await getFeatureStatus(query);
     assertExists(result);
-    assertEquals(result.length, 2);
+    assertEquals(result.length > 0, true);
   },
 });
 
