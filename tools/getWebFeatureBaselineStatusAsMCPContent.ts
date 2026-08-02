@@ -1,5 +1,5 @@
 import { getFeatureStatus } from "./helpers/getFeatureStatus.ts";
-import type { TextContent } from "@modelcontextprotocol/sdk/types.js";
+import type { TextContent } from "@modelcontextprotocol/server";
 import type { BaselineStatus } from "../types.ts";
 
 /**
