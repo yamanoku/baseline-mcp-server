@@ -45,6 +45,7 @@ Baselineについての詳細については「[Baseline (互換性) - MDN Web D
 - サーバーを起動するにあたり、Denoの使用を推奨します
   - パーミッションとして`api.webstatus.dev`のみのアクセスを許可してください
 - [`@yamanoku/baseline-mcp-server`](https://jsr.io/@yamanoku/baseline-mcp-server)を指定するか、お手元のローカル環境にbaseline-mcp-server.tsを設置して読み取るように設定してください
+- Denoをインストールせずに使う場合は、[スタンドアロンバイナリ](#スタンドアロンバイナリ)を利用できます
 
 ### Claude Desktop
 
@@ -112,6 +113,57 @@ MCPクライアントの設定でDockerコンテナを実行するようにし�
   }
 }
 ```
+
+## スタンドアロンバイナリ
+
+[`deno compile`](https://docs.deno.com/runtime/reference/cli/compile/)
+で、Denoランタイムを含んだ単一の実行ファイルを作れます。ネットワーク許可（`api.webstatus.dev`）はコンパイル時に埋め込まれるため、実行時にDenoや追加のパーミッション指定は不要です。
+
+### GitHub Releasesから入手する
+
+バージョンタグ（`v*`）をpushすると、次の6ターゲット向けバイナリがGitHub
+Releasesに公開されます。
+
+| OS      | アーキテクチャ | ファイル                                          |
+| ------- | -------------- | ------------------------------------------------- |
+| Linux   | x86_64         | `baseline-mcp-server-x86_64-unknown-linux-gnu`    |
+| Linux   | ARM64          | `baseline-mcp-server-aarch64-unknown-linux-gnu`   |
+| macOS   | x86_64         | `baseline-mcp-server-x86_64-apple-darwin`         |
+| macOS   | ARM64          | `baseline-mcp-server-aarch64-apple-darwin`        |
+| Windows | x86_64         | `baseline-mcp-server-x86_64-pc-windows-msvc.exe`  |
+| Windows | ARM64          | `baseline-mcp-server-aarch64-pc-windows-msvc.exe` |
+
+[最新リリース](https://github.com/yamanoku/baseline-mcp-server/releases/latest)
+から環境に合ったファイルをダウンロードし、実行権限を付与してください。同梱の`SHA256SUMS`で改ざんがないことも確認できます。
+
+```shell
+chmod +x baseline-mcp-server-x86_64-unknown-linux-gnu
+sha256sum --ignore-missing -c SHA256SUMS
+```
+
+MCPクライアントでは、ダウンロードしたバイナリのパスを`command`に指定します。
+
+```json
+{
+  "mcpServers": {
+    "baseline-mcp-server": {
+      "command": "/path/to/baseline-mcp-server-x86_64-unknown-linux-gnu"
+    }
+  }
+}
+```
+
+### ローカルでコンパイルする
+
+```shell
+# 実行中のOS向け
+deno task compile
+
+# ドキュメント記載の全ターゲット向け（GitHub Releasesと同じ成果物）
+deno task compile:all
+```
+
+成果物は`dist/`に出力されます。ホスト向けバイナリは`dist/baseline-mcp-server`です。
 
 ## 謝辞
 
