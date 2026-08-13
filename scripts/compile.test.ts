@@ -6,7 +6,7 @@ import {
   compileArgs,
   ENTRYPOINT,
   findTarget,
-  outputFileName,
+  outputPath,
 } from "./compile.ts";
 
 Deno.test("Deno がサポートするクロスコンパイル対象をすべて列挙する", () => {
@@ -23,21 +23,37 @@ Deno.test("Deno がサポートするクロスコンパイル対象をすべて�
   );
 });
 
-Deno.test("Windows 向け出力ファイル名に .exe を付ける", () => {
+Deno.test("OSごとのディレクトリとアーキテクチャ名で出力する", () => {
   assertEquals(
-    outputFileName("x86_64-pc-windows-msvc", ".exe"),
-    `${APP_NAME}-x86_64-pc-windows-msvc.exe`,
+    outputPath(COMPILE_TARGETS[0]),
+    "linux/baseline-mcp-server-x86_64",
   );
   assertEquals(
-    outputFileName("x86_64-unknown-linux-gnu", ""),
-    `${APP_NAME}-x86_64-unknown-linux-gnu`,
+    outputPath(COMPILE_TARGETS[1]),
+    "linux/baseline-mcp-server-aarch64",
+  );
+  assertEquals(
+    outputPath(COMPILE_TARGETS[2]),
+    "macos/baseline-mcp-server-x86_64",
+  );
+  assertEquals(
+    outputPath(COMPILE_TARGETS[3]),
+    "macos/baseline-mcp-server-aarch64",
+  );
+  assertEquals(
+    outputPath(COMPILE_TARGETS[4]),
+    "windows/baseline-mcp-server-x86_64.exe",
+  );
+  assertEquals(
+    outputPath(COMPILE_TARGETS[5]),
+    "windows/baseline-mcp-server-aarch64.exe",
   );
 });
 
 Deno.test("コンパイル引数にパーミッションとエントリポイントを含める", () => {
   assertEquals(
     compileArgs({
-      output: "dist/baseline-mcp-server",
+      output: "dist/linux/baseline-mcp-server-x86_64",
       target: "x86_64-unknown-linux-gnu",
     }),
     [
@@ -48,7 +64,7 @@ Deno.test("コンパイル引数にパーミッションとエントリポイン
       "--bundle",
       "--minify",
       "--output",
-      "dist/baseline-mcp-server",
+      "dist/linux/baseline-mcp-server-x86_64",
       "--target",
       "x86_64-unknown-linux-gnu",
       ENTRYPOINT,
@@ -57,6 +73,6 @@ Deno.test("コンパイル引数にパーミッションとエントリポイン
 });
 
 Deno.test("未対応ターゲットは findTarget が undefined を返す", () => {
-  assertEquals(findTarget("x86_64-unknown-linux-gnu")?.ext, "");
+  assertEquals(findTarget("x86_64-unknown-linux-gnu")?.os, "linux");
   assertEquals(findTarget("unknown-os"), undefined);
 });

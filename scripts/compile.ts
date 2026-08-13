@@ -11,21 +11,38 @@ export const ALLOW_NET = "api.webstatus.dev";
 
 /** @see https://docs.deno.com/runtime/reference/cli/compile/#supported-targets */
 export const COMPILE_TARGETS = [
-  { target: "x86_64-unknown-linux-gnu", ext: "" },
-  { target: "aarch64-unknown-linux-gnu", ext: "" },
-  { target: "x86_64-apple-darwin", ext: "" },
-  { target: "aarch64-apple-darwin", ext: "" },
-  { target: "x86_64-pc-windows-msvc", ext: ".exe" },
-  { target: "aarch64-pc-windows-msvc", ext: ".exe" },
+  {
+    target: "x86_64-unknown-linux-gnu",
+    os: "linux",
+    arch: "x86_64",
+    ext: "",
+  },
+  {
+    target: "aarch64-unknown-linux-gnu",
+    os: "linux",
+    arch: "aarch64",
+    ext: "",
+  },
+  { target: "x86_64-apple-darwin", os: "macos", arch: "x86_64", ext: "" },
+  { target: "aarch64-apple-darwin", os: "macos", arch: "aarch64", ext: "" },
+  {
+    target: "x86_64-pc-windows-msvc",
+    os: "windows",
+    arch: "x86_64",
+    ext: ".exe",
+  },
+  {
+    target: "aarch64-pc-windows-msvc",
+    os: "windows",
+    arch: "aarch64",
+    ext: ".exe",
+  },
 ] as const;
 
 export type CompileTarget = typeof COMPILE_TARGETS[number];
 
-export function outputFileName(
-  target: string,
-  ext: string,
-): string {
-  return `${APP_NAME}-${target}${ext}`;
+export function outputPath(item: CompileTarget): string {
+  return `${item.os}/${APP_NAME}-${item.arch}${item.ext}`;
 }
 
 export function hostOutputFileName(): string {
@@ -95,12 +112,13 @@ async function compileHost(): Promise<void> {
 }
 
 async function compileTarget(item: CompileTarget): Promise<string> {
-  const fileName = outputFileName(item.target, item.ext);
+  const relativePath = outputPath(item);
+  await Deno.mkdir(`${DIST_DIR}/${item.os}`, { recursive: true });
   await runCompile(compileArgs({
-    output: `${DIST_DIR}/${fileName}`,
+    output: `${DIST_DIR}/${relativePath}`,
     target: item.target,
   }));
-  return fileName;
+  return relativePath;
 }
 
 async function compileAll(): Promise<void> {

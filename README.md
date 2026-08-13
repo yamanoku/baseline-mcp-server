@@ -121,23 +121,24 @@ MCPクライアントの設定でDockerコンテナを実行するようにし�
 
 ### GitHub Releasesから入手する
 
-バージョンタグ（`v*`）をpushすると、次の6ターゲット向けバイナリがGitHub
-Releasesに公開されます。
+バージョンタグ（`v*`）をpushすると、OSごとのzip（`linux.zip` / `macos.zip` /
+`windows.zip`）がGitHub Releasesに公開されます。展開後の配置は次のとおりです。
 
-| OS      | アーキテクチャ | ファイル                                          |
-| ------- | -------------- | ------------------------------------------------- |
-| Linux   | x86_64         | `baseline-mcp-server-x86_64-unknown-linux-gnu`    |
-| Linux   | ARM64          | `baseline-mcp-server-aarch64-unknown-linux-gnu`   |
-| macOS   | x86_64         | `baseline-mcp-server-x86_64-apple-darwin`         |
-| macOS   | ARM64          | `baseline-mcp-server-aarch64-apple-darwin`        |
-| Windows | x86_64         | `baseline-mcp-server-x86_64-pc-windows-msvc.exe`  |
-| Windows | ARM64          | `baseline-mcp-server-aarch64-pc-windows-msvc.exe` |
+| OS      | アーキテクチャ | ファイル                                  |
+| ------- | -------------- | ----------------------------------------- |
+| Linux   | x86_64         | `linux/baseline-mcp-server-x86_64`        |
+| Linux   | ARM64          | `linux/baseline-mcp-server-aarch64`       |
+| macOS   | x86_64         | `macos/baseline-mcp-server-x86_64`        |
+| macOS   | ARM64          | `macos/baseline-mcp-server-aarch64`       |
+| Windows | x86_64         | `windows/baseline-mcp-server-x86_64.exe`  |
+| Windows | ARM64          | `windows/baseline-mcp-server-aarch64.exe` |
 
 [最新リリース](https://github.com/yamanoku/baseline-mcp-server/releases/latest)
-から環境に合ったファイルをダウンロードし、実行権限を付与してください。同梱の`SHA256SUMS`で改ざんがないことも確認できます。
+から環境に合ったzipをダウンロードして展開し、実行権限を付与してください。同梱の`SHA256SUMS`で改ざんがないことも確認できます。
 
 ```shell
-chmod +x baseline-mcp-server-x86_64-unknown-linux-gnu
+unzip linux.zip
+chmod +x linux/baseline-mcp-server-x86_64
 sha256sum --ignore-missing -c SHA256SUMS
 ```
 
@@ -147,7 +148,7 @@ MCPクライアントでは、ダウンロードしたバイナリのパスを`c
 {
   "mcpServers": {
     "baseline-mcp-server": {
-      "command": "/path/to/baseline-mcp-server-x86_64-unknown-linux-gnu"
+      "command": "/path/to/linux/baseline-mcp-server-x86_64"
     }
   }
 }
@@ -163,7 +164,7 @@ deno task compile
 deno task compile:all
 ```
 
-成果物は`dist/`に出力されます。ホスト向けバイナリは`dist/baseline-mcp-server`です。
+成果物は`dist/`に出力されます。ホスト向けバイナリは`dist/baseline-mcp-server`、全ターゲット向けは`dist/linux/`・`dist/macos/`・`dist/windows/`です。
 
 ## 謝辞
 

@@ -131,25 +131,26 @@ extra permission flags to run the binary.
 
 ### Download from GitHub Releases
 
-Pushing a version tag (`v*`) publishes binaries for the following six targets to
-GitHub Releases.
+Pushing a version tag (`v*`) publishes a zip per OS (`linux.zip`, `macos.zip`,
+`windows.zip`) to GitHub Releases. After extraction the layout is:
 
-| OS      | Architecture | File                                              |
-| ------- | ------------ | ------------------------------------------------- |
-| Linux   | x86_64       | `baseline-mcp-server-x86_64-unknown-linux-gnu`    |
-| Linux   | ARM64        | `baseline-mcp-server-aarch64-unknown-linux-gnu`   |
-| macOS   | x86_64       | `baseline-mcp-server-x86_64-apple-darwin`         |
-| macOS   | ARM64        | `baseline-mcp-server-aarch64-apple-darwin`        |
-| Windows | x86_64       | `baseline-mcp-server-x86_64-pc-windows-msvc.exe`  |
-| Windows | ARM64        | `baseline-mcp-server-aarch64-pc-windows-msvc.exe` |
+| OS      | Architecture | File                                      |
+| ------- | ------------ | ----------------------------------------- |
+| Linux   | x86_64       | `linux/baseline-mcp-server-x86_64`        |
+| Linux   | ARM64        | `linux/baseline-mcp-server-aarch64`       |
+| macOS   | x86_64       | `macos/baseline-mcp-server-x86_64`        |
+| macOS   | ARM64        | `macos/baseline-mcp-server-aarch64`       |
+| Windows | x86_64       | `windows/baseline-mcp-server-x86_64.exe`  |
+| Windows | ARM64        | `windows/baseline-mcp-server-aarch64.exe` |
 
-Download the file for your environment from the
-[latest release](https://github.com/yamanoku/baseline-mcp-server/releases/latest)
-and mark it executable. You can also verify integrity with the bundled
-`SHA256SUMS` file.
+Download the zip for your environment from the
+[latest release](https://github.com/yamanoku/baseline-mcp-server/releases/latest),
+extract it, and mark the binary executable. You can also verify integrity with
+the bundled `SHA256SUMS` file.
 
 ```shell
-chmod +x baseline-mcp-server-x86_64-unknown-linux-gnu
+unzip linux.zip
+chmod +x linux/baseline-mcp-server-x86_64
 sha256sum --ignore-missing -c SHA256SUMS
 ```
 
@@ -159,7 +160,7 @@ Point your MCP client `command` at the downloaded binary:
 {
   "mcpServers": {
     "baseline-mcp-server": {
-      "command": "/path/to/baseline-mcp-server-x86_64-unknown-linux-gnu"
+      "command": "/path/to/linux/baseline-mcp-server-x86_64"
     }
   }
 }
@@ -176,6 +177,8 @@ deno task compile:all
 ```
 
 Artifacts are written to `dist/`. The host binary is `dist/baseline-mcp-server`.
+Cross-compiled binaries go under `dist/linux/`, `dist/macos/`, and
+`dist/windows/`.
 
 ## Acknowledgements
 

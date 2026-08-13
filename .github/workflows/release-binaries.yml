@@ -24,10 +24,18 @@ jobs:
       - name: Compile standalone binaries
         run: deno task compile:all
 
+      - name: Package binaries by OS
+        run: |
+          cd dist
+          zip -r linux.zip linux
+          zip -r macos.zip macos
+          zip -r windows.zip windows
+
       - name: Create GitHub Release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create "${{ github.ref_name }}" dist/* \
+          gh release create "${{ github.ref_name }}" \
+            dist/linux.zip dist/macos.zip dist/windows.zip dist/SHA256SUMS \
             --title "Baseline MCP Server ${{ github.ref_name }}" \
             --generate-notes
