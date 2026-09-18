@@ -53,6 +53,7 @@ For more details about Baseline, refer to
 - Specify
   [`@yamanoku/baseline-mcp-server`](https://jsr.io/@yamanoku/baseline-mcp-server)
   or set up your local environment to read baseline-mcp-server.ts
+- To run without installing Deno, use a [standalone binary](#standalone-binary)
 
 ### Claude Desktop
 
@@ -120,6 +121,64 @@ Configure your MCP client to run the Docker container:
   }
 }
 ```
+
+## Standalone binary
+
+[`deno compile`](https://docs.deno.com/runtime/reference/cli/compile/) produces
+a single executable that embeds the Deno runtime. Network permission for
+`api.webstatus.dev` is baked in at compile time, so you do not need Deno or
+extra permission flags to run the binary.
+
+### Download from GitHub Releases
+
+Pushing a version tag (`v*`) publishes a zip per OS (`linux.zip`, `macos.zip`,
+`windows.zip`) to GitHub Releases. After extraction the layout is:
+
+| OS      | Architecture | File                                      |
+| ------- | ------------ | ----------------------------------------- |
+| Linux   | x86_64       | `linux/baseline-mcp-server-x86_64`        |
+| Linux   | ARM64        | `linux/baseline-mcp-server-aarch64`       |
+| macOS   | x86_64       | `macos/baseline-mcp-server-x86_64`        |
+| macOS   | ARM64        | `macos/baseline-mcp-server-aarch64`       |
+| Windows | x86_64       | `windows/baseline-mcp-server-x86_64.exe`  |
+| Windows | ARM64        | `windows/baseline-mcp-server-aarch64.exe` |
+
+Download the zip for your environment from the
+[latest release](https://github.com/yamanoku/baseline-mcp-server/releases/latest),
+extract it, and mark the binary executable. You can also verify integrity with
+the bundled `SHA256SUMS` file.
+
+```shell
+unzip linux.zip
+chmod +x linux/baseline-mcp-server-x86_64
+sha256sum --ignore-missing -c SHA256SUMS
+```
+
+Point your MCP client `command` at the downloaded binary:
+
+```json
+{
+  "mcpServers": {
+    "baseline-mcp-server": {
+      "command": "/path/to/linux/baseline-mcp-server-x86_64"
+    }
+  }
+}
+```
+
+### Compile locally
+
+```shell
+# Current OS
+deno task compile
+
+# All documented targets (same artifacts as GitHub Releases)
+deno task compile:all
+```
+
+Artifacts are written to `dist/`. The host binary is `dist/baseline-mcp-server`.
+Cross-compiled binaries go under `dist/linux/`, `dist/macos/`, and
+`dist/windows/`.
 
 ## Acknowledgements
 

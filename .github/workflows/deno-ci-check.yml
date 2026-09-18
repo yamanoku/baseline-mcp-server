@@ -7,6 +7,7 @@ on:
     paths:
       - "**.ts"
       - "deno.json"
+      - "scripts/**"
       - ".github/workflows/deno-ci-check.yml"
 
 permissions:
@@ -32,7 +33,13 @@ jobs:
         run: deno lint
 
       - name: Type check
-        run: deno check baseline-mcp-server.ts
+        run: deno check baseline-mcp-server.ts scripts/compile.ts scripts/smoke_compiled_binary.ts
 
       - name: Run tests
         run: deno test -A
+
+      - name: Compile standalone binary
+        run: deno task compile
+
+      - name: Smoke test compiled binary
+        run: deno task compile:smoke

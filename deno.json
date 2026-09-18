@@ -10,8 +10,14 @@
     "dev": "deno run --watch baseline-mcp-server.ts",
     "test": "deno test --allow-net=api.webstatus.dev",
     "lint": "deno lint",
-    "fmt": "deno fmt"
+    "fmt": "deno fmt",
+    "compile": "deno run --allow-run --allow-read --allow-write=dist scripts/compile.ts",
+    "compile:all": "deno run --allow-run --allow-read --allow-write=dist scripts/compile.ts --all",
+    "compile:smoke": "deno run --allow-run --allow-read scripts/smoke_compiled_binary.ts dist/baseline-mcp-server"
   },
+  "exclude": [
+    "dist"
+  ],
   "imports": {
     "@modelcontextprotocol/client": "npm:@modelcontextprotocol/client@^2.0.0",
     "@modelcontextprotocol/server": "npm:@modelcontextprotocol/server@^2.0.0",
